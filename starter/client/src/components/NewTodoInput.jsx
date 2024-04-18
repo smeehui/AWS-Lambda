@@ -1,18 +1,19 @@
-import { useAuth0 } from '@auth0/auth0-react'
+import {useAuth0} from '@auth0/auth0-react'
 import dateFormat from 'dateformat'
-import React, { useState } from 'react'
-import { Divider, Grid, Input } from 'semantic-ui-react'
-import { createTodo } from '../api/todos-api'
+import React, {useState} from 'react'
+import {Divider, Grid, Input} from 'semantic-ui-react'
+import {createTodo} from '../api/todos-api'
+import {config} from "../config";
 
 export function NewTodoInput({ onNewTodo }) {
   const [newTodoName, setNewTodoName] = useState('')
 
   const { getAccessTokenSilently } = useAuth0()
 
-  const onTodoCreate = async (event) => {
+    const onTodoCreate = async () => {
     try {
       const accessToken = await getAccessTokenSilently({
-        audience: `https://test-endpoint.auth0.com/api/v2/`,
+          audience: `https://${config.auth0Domain}/api/v2/`,
         scope: 'write:todos'
       })
       const dueDate = calculateDueDate()

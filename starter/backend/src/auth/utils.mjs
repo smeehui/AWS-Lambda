@@ -1,7 +1,5 @@
-import { decode } from 'jsonwebtoken'
-import { createLogger } from '../utils/logger.mjs'
+import {decode} from 'jsonwebtoken'
 
-const logger = createLogger('utils')
 /**
  * Parse a JWT token and return a user id
  * @param jwtToken JWT token to parse
